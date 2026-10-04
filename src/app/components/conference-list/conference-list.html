@@ -1,0 +1,48 @@
+<section id="conferences">
+  <div class="title">
+    <span class="eyebrow">Événements</span>
+    <h2>Conférences à venir</h2>
+    <p>Choisissez la conférence qui vous intéresse et réservez votre place.</p>
+  </div>
+
+  @if (conferences.length > 0) {
+    <div class="list">
+      @for (conference of conferences; track conference.title) {
+        <article class="card item" (click)="selectConference(conference)">
+          <div class="date">
+            <strong>{{ conference.date | date:'dd' }}</strong>
+            <span>{{ conference.date | date:'MMM' | uppercase }}</span>
+          </div>
+
+          <div class="body">
+            <span class="place">📍 {{ conference.place }}</span>
+            <h3>{{ conference.title }}</h3>
+            <p>{{ conference.description }}</p>
+
+            <div class="bar"><i [style.width.%]="fill(conference)"></i></div>
+            <small>{{ conference.nbParticipants }} / {{ conference.maxParticipants }} inscrits
+              · {{ conference.maxParticipants - conference.nbParticipants }} places restantes</small>
+          </div>
+
+          <div class="action">
+            @if (conference.maxParticipants - conference.nbParticipants > 10) {
+              <span class="tag ok">Disponible</span>
+              <button class="btn" (click)="register(conference, $event)">S'inscrire</button>
+            } @else if (conference.maxParticipants - conference.nbParticipants > 0) {
+              <span class="tag low">Places limitées</span>
+              <button class="btn warn" (click)="register(conference, $event)">S'inscrire</button>
+            } @else {
+              <span class="tag full">Complet</span>
+              <button class="btn off" disabled>Complet</button>
+            }
+          </div>
+        </article>
+      }
+    </div>
+  } @else {
+    <div class="card empty">
+      <h3>Aucune conférence disponible</h3>
+      <p>Revenez prochainement pour découvrir nos nouveaux événements.</p>
+    </div>
+  }
+</section>

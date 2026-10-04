@@ -1,0 +1,19 @@
+.note {
+  display: flex;
+  gap: 14px;
+  padding: 22px 20px;
+  border-radius: 24px;
+  background: linear-gradient(135deg, rgba(26, 17, 38, 0.98), rgba(33, 24, 48, 0.9));
+  border: 1px solid rgba(34, 211, 238, 0.18);
+  box-shadow: 0 12px 20px rgba(10, 9, 18, 0.25);
+}
+.dot {
+  min-width: 14px;
+  height: 14px;
+  margin-top: 6px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--secondary), var(--primary));
+  box-shadow: 0 0 0 6px rgba(34, 211, 238, 0.12);
+}
+h2 { font-size: 18px; margin: 4px 0 6px; }
+p { margin: 0; color: #d0c4f6; font-size: 14px; line-height: 1.6; }

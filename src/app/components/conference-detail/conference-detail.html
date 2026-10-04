@@ -1,0 +1,19 @@
+@if (conference(); as c) {
+  <article class="detail">
+    <span class="eyebrow">Conférence sélectionnée</span>
+    <h2>{{ c.title }}</h2>
+    <p>{{ c.description }}</p>
+    <dl>
+      <div><dt>Date</dt><dd>{{ c.date | date:'dd/MM/yyyy' }}</dd></div>
+      <div><dt>Lieu</dt><dd>{{ c.place }}</dd></div>
+      <div><dt>Participants</dt><dd>{{ c.nbParticipants }} / {{ c.maxParticipants }}</dd></div>
+      <div><dt>Places restantes</dt><dd class="hl">{{ c.maxParticipants - c.nbParticipants }}</dd></div>
+    </dl>
+  </article>
+} @else {
+  <div class="card empty">
+    <span class="icon">←</span>
+    <h3>Sélectionnez une conférence</h3>
+    <p>Cliquez sur une carte pour voir ses détails.</p>
+  </div>
+}

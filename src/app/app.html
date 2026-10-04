@@ -1,0 +1,17 @@
+<app-header></app-header>
+<app-navbar></app-navbar>
+
+<main>
+  <section>
+    <app-conference-list (conferenceSelected)="onConferenceSelected($event)"></app-conference-list>
+  </section>
+
+  <aside>
+    <app-user-profile></app-user-profile>
+    <app-notifications></app-notifications>
+    <app-conference-detail [conference]="selectedConference()"></app-conference-detail>
+    <app-friend-list></app-friend-list>
+  </aside>
+</main>
+
+<app-footer></app-footer>

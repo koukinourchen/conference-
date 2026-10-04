@@ -1,0 +1,48 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=Sora:wght@600;700;800&display=swap');
+:root {
+  --ink: #f4ebff;
+  --muted: #bca8d6;
+  --primary: #8b5cf6;
+  --primary-strong: #6d28d9;
+  --primary-soft: #efe7ff;
+  --secondary: #22d3ee;
+  --accent: #f59e0b;
+  --rose: #fb7185;
+  --bg: #120d1f;
+  --bg-panel: #1a122c;
+  --bg-soft: #221933;
+  --card: rgba(30, 20, 42, 0.8);
+  --card-strong: #221a35;
+  --line: rgba(180, 141, 255, 0.12);
+  --shadow: 0 24px 54px rgba(8, 6, 15, 0.45);
+}
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(139, 92, 246, 0.28), transparent 28%),
+    radial-gradient(circle at bottom right, rgba(34, 211, 238, 0.18), transparent 26%),
+    var(--bg);
+  color: var(--ink);
+}
+h1, h2, h3 { font-family: 'Sora', sans-serif; margin-top: 0; }
+p { margin-top: 0; }
+button, input { font-family: inherit; }
+button { transition: all .2s ease; }
+button:not(:disabled):hover { transform: translateY(-2px); }
+.eyebrow {
+  color: #b89cff;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+}
+.card {
+  background: linear-gradient(180deg, rgba(34, 26, 53, 0.95), rgba(23, 17, 32, 0.9));
+  border: 1px solid var(--line);
+  border-radius: 24px;
+  padding: 24px;
+  box-shadow: var(--shadow);
+}

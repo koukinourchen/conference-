@@ -1,0 +1,65 @@
+.hero {
+  width: min(1180px, calc(100% - 40px));
+  margin: 20px auto 0;
+  padding: 32px 48px 56px;
+  border-radius: 32px;
+  color: #fff;
+  position: relative;
+  overflow: hidden;
+  background: linear-gradient(135deg, #1e1230 0%, #31224d 42%, #1d1030 100%);
+  box-shadow: 0 30px 50px rgba(12, 8, 20, 0.45);
+  border: 1px solid rgba(184, 156, 255, 0.17);
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 82% 18%, rgba(34, 211, 238, 0.28), transparent 24%);
+}
+.hero::after {
+  content: "";
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: rgba(139, 92, 246, 0.55);
+  right: -80px;
+  bottom: -104px;
+  box-shadow: 0 0 0 24px rgba(139, 92, 246, 0.12);
+}
+.brand, .hero-text { position: relative; z-index: 1; }
+.brand { display: flex; align-items: center; gap: 10px; font-size: 20px; }
+.brand span:last-child, .brand strong span { color: var(--secondary); }
+.logo {
+  width: 38px;
+  height: 38px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  color: #fff;
+  display: grid;
+  place-items: center;
+  font: 800 20px 'Sora';
+  box-shadow: 0 12px 22px rgba(139, 92, 246, 0.35);
+}
+.hero-text { margin-top: 60px; max-width: 640px; }
+.pill {
+  display: inline-block;
+  background: rgba(255,255,255,0.08);
+  padding: 8px 14px;
+  border: 1px solid rgba(184, 156, 255, 0.2);
+  border-radius: 999px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #e9ddff;
+}
+h1 { font-size: clamp(32px, 5vw, 54px); line-height: 1.08; margin: 18px 0 14px; }
+h1 em { font-style: normal; color: var(--secondary); }
+.hero-text p {
+  color: rgba(230, 220, 255, 0.86);
+  line-height: 1.7;
+  max-width: 520px;
+  margin: 0;
+}
+@media (max-width: 650px) { .hero { padding: 24px 24px 44px; } }

@@ -1,0 +1,17 @@
+:host { display: block; min-height: 100vh; }
+main {
+  width: min(1200px, calc(100% - 40px));
+  margin: 30px auto 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1.6fr) minmax(290px, 0.9fr);
+  gap: 28px;
+  align-items: start;
+}
+section { display: grid; gap: 20px; }
+aside {
+  display: grid;
+  gap: 18px;
+  position: sticky;
+  top: 86px;
+}
+@media (max-width: 960px) { main { grid-template-columns: 1fr; } aside { position: static; } }
