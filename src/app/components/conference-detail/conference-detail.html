@@ -9,6 +9,7 @@
       <div><dt>Participants</dt><dd>{{ c.nbParticipants }} / {{ c.maxParticipants }}</dd></div>
       <div><dt>Places restantes</dt><dd class="hl">{{ c.maxParticipants - c.nbParticipants }}</dd></div>
     </dl>
+    <button class="edit" (click)="edit.emit(c)">Modifier cette conférence</button>
   </article>
 } @else {
   <div class="card empty">

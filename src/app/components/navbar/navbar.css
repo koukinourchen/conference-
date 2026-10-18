@@ -5,11 +5,11 @@
   z-index: 100;
 }
 nav {
-  width: min(560px, calc(100% - 24px));
+  width: min(720px, calc(100% - 24px));
   margin: -26px auto 0;
   display: flex;
   align-items: center;
-  gap: 22px;
+  gap: 18px;
   padding: 10px 10px 10px 26px;
   background: rgba(20, 14, 28, 0.75);
   backdrop-filter: blur(12px);
@@ -35,3 +35,12 @@ button {
   cursor: pointer;
 }
 button:hover { background: linear-gradient(135deg, var(--primary-strong), var(--primary)); }
+
+.badge {
+  background: rgba(34, 211, 238, 0.16);
+  color: var(--secondary);
+  padding: 6px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+}
+.badge:hover { color: #fff; }

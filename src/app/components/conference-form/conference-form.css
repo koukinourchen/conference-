@@ -1,0 +1,43 @@
+h2 { font-size: 24px; margin: 8px 0 14px; }
+form { display: grid; gap: 14px; }
+.field { display: grid; gap: 6px; }
+label { font-size: 13px; font-weight: 700; color: #d9c9ff; }
+input, select, textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border-radius: 14px;
+  border: 1px solid var(--line);
+  background: rgba(18, 13, 31, 0.8);
+  color: var(--ink);
+  font: inherit;
+}
+input:focus, select:focus, textarea:focus { outline: 2px solid var(--primary); }
+input.invalid, select.invalid, textarea.invalid { border-color: var(--rose); }
+.row { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 14px; }
+.meta { display: flex; justify-content: space-between; gap: 10px; }
+.error { color: #ff9bb1; font-size: 12px; }
+.counter { color: var(--muted); font-size: 12px; }
+.counter.over { color: var(--rose); font-weight: 700; }
+.success {
+  margin: 0 0 14px;
+  padding: 12px 16px;
+  border-radius: 14px;
+  background: rgba(34, 197, 94, 0.16);
+  color: #9be7b2;
+  font-weight: 600;
+}
+.live { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-top: 6px; }
+.state { font-size: 13px; font-weight: 700; color: #ff9bb1; }
+.state.ok { color: #9be7b2; }
+.actions { display: flex; gap: 10px; }
+.btn {
+  background: linear-gradient(135deg, var(--primary), var(--primary-strong));
+  color: #fff;
+  border: 0;
+  padding: 12px 24px;
+  border-radius: 999px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.btn.ghost { background: rgba(255, 255, 255, 0.08); color: #d9c9ff; }
+.btn:disabled { background: rgba(148, 163, 184, 0.15); color: #d8d7dd; cursor: not-allowed; }

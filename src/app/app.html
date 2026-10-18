@@ -4,12 +4,13 @@
 <main>
   <section>
     <app-conference-list (conferenceSelected)="onConferenceSelected($event)"></app-conference-list>
+    <app-conference-form [conference]="editing()" (finished)="editing.set(null)"></app-conference-form>
   </section>
 
   <aside>
     <app-user-profile></app-user-profile>
     <app-notifications></app-notifications>
-    <app-conference-detail [conference]="selectedConference()"></app-conference-detail>
+    <app-conference-detail [conference]="selectedConference()" (edit)="startEdit($event)"></app-conference-detail>
     <app-friend-list></app-friend-list>
   </aside>
 </main>

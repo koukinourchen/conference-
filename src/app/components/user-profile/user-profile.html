@@ -6,3 +6,21 @@
     <p>NourchenKouki@gmail.com</p>
   </div>
 </section>
+
+<section class="card program" id="programme">
+  <span class="eyebrow">Mon programme</span>
+
+  <ul>
+    @for (c of booked(); track c.id) {
+      <li>
+        <div>
+          <strong>{{ c.title }}</strong>
+          <small>{{ c.date | date:'dd/MM/yyyy' }} · {{ c.place }}</small>
+        </div>
+        <button title="Annuler la réservation" (click)="booking.cancel(c.id)">✕</button>
+      </li>
+    } @empty {
+      <li class="none">Aucune réservation pour le moment.</li>
+    }
+  </ul>
+</section>

@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Conference } from '../../models/conference';
 
@@ -13,5 +13,8 @@ import { Conference } from '../../models/conference';
 export class ConferenceDetail {
 
   conference = input<Conference | null>(null);
+
+  
+  edit = output<Conference>();
 
 }

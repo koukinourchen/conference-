@@ -1,0 +1,120 @@
+<section class="card" id="ajout">
+  <span class="eyebrow">{{ isEditMode() ? 'Modification' : 'Nouvelle conférence' }}</span>
+  <h2>{{ isEditMode() ? 'Modifier la conférence' : 'Ajouter une conférence' }}</h2>
+
+  @if (successMessage()) {
+    <p class="success">✓ {{ successMessage() }}</p>
+  }
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()" novalidate>
+
+    <div class="field">
+      <label for="title">Titre</label>
+      <input id="title" type="text" formControlName="title" [class.invalid]="showError(title)" />
+      @if (showError(title)) {
+        <small class="error">
+          @if (title.hasError('required') || title.hasError('blank')) { Le titre est obligatoire. }
+          @else if (title.hasError('minlength')) { Le titre doit contenir au moins {{ title.errors?.['minlength'].requiredLength }} caractères. }
+          @else if (title.hasError('maxlength')) { Le titre ne peut pas dépasser {{ title.errors?.['maxlength'].requiredLength }} caractères. }
+        </small>
+      }
+    </div>
+
+    <div class="field">
+      <label for="description">Description</label>
+      <textarea id="description" rows="3" formControlName="description" [class.invalid]="showError(description)"></textarea>
+      <div class="meta">
+        @if (showError(description)) {
+          <small class="error">
+            @if (description.hasError('required') || description.hasError('blank')) { La description est obligatoire. }
+            @else if (description.hasError('minlength')) { Au moins {{ description.errors?.['minlength'].requiredLength }} caractères. }
+            @else if (description.hasError('maxlength')) { Maximum {{ description.errors?.['maxlength'].requiredLength }} caractères. }
+          </small>
+        } @else { <span></span> }
+        <small class="counter" [class.over]="descriptionLength() > descriptionMax">
+          {{ descriptionLength() }} / {{ descriptionMax }}
+        </small>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="category">Catégorie</label>
+        <select id="category" formControlName="category" [class.invalid]="showError(category)">
+          <option value="" disabled>Choisir…</option>
+          @for (cat of categories; track cat) {
+            <option [value]="cat">{{ cat }}</option>
+          }
+        </select>
+        @if (showError(category)) { <small class="error">Choisissez une catégorie.</small> }
+      </div>
+
+      <div class="field">
+        <label for="place">Lieu</label>
+        <input id="place" type="text" formControlName="place" [class.invalid]="showError(place)" />
+        @if (showError(place)) {
+          <small class="error">
+            @if (place.hasError('required') || place.hasError('blank')) { Le lieu est obligatoire. }
+            @else if (place.hasError('minlength')) { Au moins {{ place.errors?.['minlength'].requiredLength }} caractères. }
+            @else if (place.hasError('maxlength')) { Maximum {{ place.errors?.['maxlength'].requiredLength }} caractères. }
+          </small>
+        }
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="field">
+        <label for="date">Date</label>
+        <input id="date" type="date" formControlName="date" [class.invalid]="showError(date)" />
+        @if (showError(date)) {
+          <small class="error">
+            @if (date.hasError('required')) { La date est obligatoire. }
+            @else if (date.hasError('pastDate')) { La date ne peut pas être dans le passé. }
+          </small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="max">Places maximum</label>
+        <input id="max" type="number" formControlName="maxParticipants" [class.invalid]="showError(maxParticipants)" />
+        @if (showError(maxParticipants)) {
+          <small class="error">
+            @if (maxParticipants.hasError('required')) { Le nombre maximum est obligatoire. }
+            @else if (maxParticipants.hasError('pattern')) { Entrez un nombre entier. }
+            @else if (maxParticipants.hasError('min')) { Au moins 1 participant. }
+            @else if (maxParticipants.hasError('max')) { Maximum 1000 participants. }
+          </small>
+        }
+      </div>
+
+      <div class="field">
+        <label for="nb">Déjà inscrits</label>
+        <input id="nb" type="number" formControlName="nbParticipants" [class.invalid]="showError(nbParticipants) || (form.hasError('seatsExceeded') && nbParticipants.dirty)" />
+        @if (showError(nbParticipants)) {
+          <small class="error">
+            @if (nbParticipants.hasError('required')) { Ce champ est obligatoire. }
+            @else if (nbParticipants.hasError('pattern')) { Entrez un nombre entier. }
+            @else if (nbParticipants.hasError('min')) { Ne peut pas être négatif. }
+          </small>
+        }
+        @if (form.hasError('seatsExceeded') && (nbParticipants.dirty || maxParticipants.dirty)) {
+          <small class="error">Les inscrits ne peuvent pas dépasser le maximum.</small>
+        }
+      </div>
+    </div>
+
+    <div class="live">
+      <span class="state" [class.ok]="isValid()">
+        {{ isValid() ? '● Formulaire valide' : '● Formulaire invalide' }}
+      </span>
+      <span class="actions">
+        @if (isEditMode()) {
+          <button type="button" class="btn ghost" (click)="cancel()">Annuler</button>
+        }
+        <button type="submit" class="btn" [disabled]="!canSave()">
+          {{ isEditMode() ? 'Mettre à jour' : 'Enregistrer' }}
+        </button>
+      </span>
+    </div>
+  </form>
+</section>

@@ -5,9 +5,16 @@
     <p>Choisissez la conférence qui vous intéresse et réservez votre place.</p>
   </div>
 
-  @if (conferences.length > 0) {
+  <div class="chips">
+    <button class="chip" [class.active]="selectedTopic() === ALL" (click)="filterBy(ALL)">Tous</button>
+    @for (topic of topics(); track topic) {
+      <button class="chip" [class.active]="selectedTopic() === topic" (click)="filterBy(topic)">{{ topic }}</button>
+    }
+  </div>
+
+  @if (conferences().length > 0) {
     <div class="list">
-      @for (conference of conferences; track conference.title) {
+      @for (conference of conferences(); track conference.id) {
         <article class="card item" (click)="selectConference(conference)">
           <div class="date">
             <strong>{{ conference.date | date:'dd' }}</strong>
@@ -15,7 +22,7 @@
           </div>
 
           <div class="body">
-            <span class="place">📍 {{ conference.place }}</span>
+            <span class="place">📍 {{ conference.place }} · {{ conference.category }}</span>
             <h3>{{ conference.title }}</h3>
             <p>{{ conference.description }}</p>
 
@@ -25,7 +32,10 @@
           </div>
 
           <div class="action">
-            @if (conference.maxParticipants - conference.nbParticipants > 10) {
+            @if (booking.isBooked(conference.id)) {
+              <span class="tag ok">Réservé ✓</span>
+              <button class="btn cancel" (click)="cancel(conference, $event)">Annuler</button>
+            } @else if (conference.maxParticipants - conference.nbParticipants > 10) {
               <span class="tag ok">Disponible</span>
               <button class="btn" (click)="register(conference, $event)">S'inscrire</button>
             } @else if (conference.maxParticipants - conference.nbParticipants > 0) {
